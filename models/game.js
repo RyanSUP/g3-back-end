@@ -3,6 +3,7 @@ import mongoose from 'mongoose'
 const Schema = mongoose.Schema
 
 const gameSchema = new Schema({
+  bga_id: {type: String},
   name: {type: String},
   description_preview: {type: String},
   thumb_url: {type: String},
