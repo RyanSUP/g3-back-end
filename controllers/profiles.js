@@ -1,7 +1,9 @@
+import { Game } from '../models/game.js'
 import { Profile } from '../models/profile.js'
 
 function index(req, res) {
   Profile.find({})
+  .populate('games')
   .then(profiles => res.json(profiles))
   .catch(err => {
     console.log(err)
@@ -29,8 +31,18 @@ function add(req, res) {
   .catch(error => console.log(error))
 }
 
+function deleteGame(req, res) {
+  console.log('DELETE GAME')
+  Profile.findById(req.params.id)
+  .then(profile => {
+    profile.games.remove(req.body._id)
+    profile.save()
+  })
+}
+
 export { 
   index, 
   show,
   add,
+  deleteGame as delete,
 }
