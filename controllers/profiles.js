@@ -29,8 +29,36 @@ function add(req, res) {
   .catch(error => console.log(error))
 }
 
+function deleteGame(req, res) {
+  console.log('routes') 
+  console.log(req.body)
+  Profile.findById(req.params.id)
+  .then(profile => {
+    profile.games.remove(req.body._id)
+  })  
+  .catch(err => {
+    res.status(500).json(err)
+  })
+}
+
 export { 
   index, 
   show,
   add,
+  deleteGame as delete
 }
+
+
+// function deleteGame(req, res) {
+//   console.log('routes') 
+//   console.log(req.body)
+//   Profile.findById(req.params.id)
+
+//   .then(profile => {
+//   console.log(profile.games)
+//     Game.findByIdAndDelete()
+//   })  
+//   .catch(err => {
+//     res.status(500).json(err)
+//   })
+// }
