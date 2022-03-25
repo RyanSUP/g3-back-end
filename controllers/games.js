@@ -11,6 +11,32 @@ function index (req, res) {
   })
 }
 
+const pruneGameObject =(gameObj) => (
+  { 
+    bga_id: gameObj.id,
+    name: gameObj.name, 
+    description: gameObj.description,
+    image_url: gameObj.image_url,
+    thumb_url: gameObj.image_url,
+  }
+)
+
+const create = (req, res) => {
+  let prunedGame = pruneGameObject(req.body)
+  Game.findOne( {bga_id: prunedGame.bga_id} )
+  .then(game => {
+    if(!game) {
+      Game.create(prunedGame)
+      .then(() => console.log('CACHE SUCCESSFUL', prunedGame.bga_id))
+    } else {
+      console.log(`${prunedGame.bga_id} (${prunedGame.name}) is already cached`)
+    }
+    return res.json(game)
+  })
+  .catch(error => console.log(error, `ERROR CACHING ${prunedGame.bga_id} (${prunedGame.name})`))
+}
+
 export {
-  index
+  index,
+  create,
 }
