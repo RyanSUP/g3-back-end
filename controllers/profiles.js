@@ -18,7 +18,19 @@ function show(req, res) {
   })
 }
 
+function add(req, res) {
+  Profile.findById(req.params.id)
+  .then(profile => {
+    console.log(req.body)
+    // profile.games.push(req.body)
+    // profile.save()
+    // .then(udpatedProfile => res.json(udpatedProfile))
+  })
+  .catch(error => console.log(error))
+}
+
 export { 
   index, 
   show,
+  add,
 }
