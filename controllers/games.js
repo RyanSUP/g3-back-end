@@ -15,7 +15,7 @@ const pruneGameObject =(gameObj) => (
   { 
     bga_id: gameObj.id,
     name: gameObj.name, 
-    description: gameObj.description,
+    description_preview: gameObj.description,
     image_url: gameObj.image_url,
     thumb_url: gameObj.image_url,
   }
