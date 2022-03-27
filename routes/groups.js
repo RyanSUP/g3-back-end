@@ -5,7 +5,7 @@ import { decodeUserFromToken, checkAuth } from '../middleware/auth.js'
 const router = Router()
 
 router.use(decodeUserFromToken)
-router.post('/', groupsCtrl.create)
+router.post('/', checkAuth, groupsCtrl.create)
 
 
 export { router }
