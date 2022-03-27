@@ -4,8 +4,11 @@ import { decodeUserFromToken, checkAuth } from '../middleware/auth.js'
 
 const router = Router()
 
+router.get('/', groupsCtrl.index)
+router.get('/:id', groupsCtrl.show)
+
 router.use(decodeUserFromToken)
-router.post('/', groupsCtrl.create)
+router.post('/', checkAuth, groupsCtrl.create)
 
 
 export { router }
