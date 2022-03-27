@@ -11,6 +11,27 @@ function create(req, res) {
   .catch(err => res.json(err))
 }
 
+function index(req, res) {
+  Group.find({})
+  .then(groups => res.json(groups))
+  .catch(err => {
+    console.log(err)
+    res.status(500).json(err)
+  })
+}
+function show(req, res) {
+  console.log('linked')
+  Group.findById(req.body.id)
+  .populate('manager')
+  .then(group => res.json(group))
+  .catch(err => {
+    console.log(err)
+    res.status(500).json(err)
+  })
+}
+
 export {
-  create
+  create,
+  index,
+  show
 }
