@@ -13,7 +13,7 @@ router.get('/', checkAuth, profilesCtrl.index)
 router.get('/:id', checkAuth, profilesCtrl.show)
 router.post('/:id/groups', checkAuth, profilesCtrl.join)
 router.post('/:id/games', checkAuth, profilesCtrl.add)
-router.delete('/:id', checkAuth, profilesCtrl.delete)
+router.delete('/:id/games', checkAuth, profilesCtrl.delete)
 
 
 export { router }
