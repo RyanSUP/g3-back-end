@@ -21,7 +21,10 @@ function index(req, res) {
 }
 function show(req, res) {
   Group.findById(req.params.id)
-  .populate('profiles')
+  .populate({
+    path: 'profiles',
+    populate: { path: 'games' }
+  })
   .then(group => res.json(group))
   .catch(err => {
     console.log(err)
@@ -50,10 +53,18 @@ function addGathering(req, res) {
   .catch(error => console.log(error))
 }
 
+function deleteGroup(){
+  console.log('linked')
+  // Group.findByIdAndDelete(req.params.id)
+  // .then(group => res.json(group))
+  // .catch(error => console.log(error))
+}
+
 export {
   create,
   index,
   show,
   join,
-  addGathering
+  addGathering,
+  deleteGroup
 }
