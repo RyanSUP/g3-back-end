@@ -21,7 +21,10 @@ function index(req, res) {
 }
 function show(req, res) {
   Group.findById(req.params.id)
-  .populate('profiles')
+  .populate({
+    path: 'profiles',
+    populate: { path: 'games' }
+  })
   .then(group => res.json(group))
   .catch(err => {
     console.log(err)
