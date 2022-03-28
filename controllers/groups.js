@@ -39,9 +39,21 @@ function join(req, res) {
   .catch(error => console.log(error))
 }
 
+function addGathering(req, res) {
+  console.log(req.params.id)
+  Group.findById(req.params.id)
+  .then(group => {
+    group.gatherings.push(req.body)
+    group.save()
+    .then(udpatedGroup => res.json(udpatedGroup))
+  })
+  .catch(error => console.log(error))
+}
+
 export {
   create,
   index,
   show,
-  join
+  join,
+  addGathering
 }
