@@ -7,6 +7,7 @@ const profileSchema = new mongoose.Schema({
   avatar: String,
   name: String,
   games: [{ type: Schema.Types.ObjectId, ref: "Game" }],
+  groups: [{ type: Schema.Types.ObjectId, ref: "Group" }],
 },{
     timestamps: true,
 })

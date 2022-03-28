@@ -40,11 +40,23 @@ function deleteGame(req, res) {
   })
 }
 
+function join(req, res) {
+  console.log('made the route')
+  Profile.findById(req.params.id)
+  .then(profile => {
+    profile.groups.push(req.body)
+    profile.save()
+    .then(udpatedProfile => res.json(udpatedProfile))
+  })
+  .catch(error => console.log(error))
+}
+
 export { 
   index, 
   show,
   add,
   deleteGame as delete,
+  join
 }
 
 
