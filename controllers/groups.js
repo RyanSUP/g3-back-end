@@ -20,8 +20,7 @@ function index(req, res) {
   })
 }
 function show(req, res) {
-  console.log('linked')
-  Group.findById(req.body.id)
+  Group.findById(req.params.id)
   .populate('profiles')
   .then(group => res.json(group))
   .catch(err => {
