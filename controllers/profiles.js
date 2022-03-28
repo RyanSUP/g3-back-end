@@ -24,7 +24,7 @@ function show(req, res) {
 function add(req, res) {
   Profile.findById(req.params.id)
   .then(profile => {
-    profile.games.push(req.body)
+    profile.games.push(req.body._id)
     profile.save()
     .then(udpatedProfile => res.json(udpatedProfile))
   })
