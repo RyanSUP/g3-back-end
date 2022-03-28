@@ -22,7 +22,7 @@ function index(req, res) {
 function show(req, res) {
   console.log('linked')
   Group.findById(req.body.id)
-  .populate('manager')
+  .populate('profiles')
   .then(group => res.json(group))
   .catch(err => {
     console.log(err)
@@ -30,8 +30,19 @@ function show(req, res) {
   })
 }
 
+function join(req, res) {
+  Group.findById(req.params.id)
+  .then(group => {
+    group.profiles.push(req.user.profile)
+    group.save()
+    .then(udpatedProfile => res.json(udpatedProfile))
+  })
+  .catch(error => console.log(error))
+}
+
 export {
   create,
   index,
-  show
+  show,
+  join
 }

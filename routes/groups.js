@@ -9,6 +9,6 @@ router.get('/:id', groupsCtrl.show)
 
 router.use(decodeUserFromToken)
 router.post('/', checkAuth, groupsCtrl.create)
-
+router.post('/:id', checkAuth, groupsCtrl.join)
 
 export { router }
