@@ -43,7 +43,6 @@ function join(req, res) {
 }
 
 function addGathering(req, res) {
-  console.log(req.params.id)
   Group.findById(req.params.id)
   .then(group => {
     group.gatherings.push(req.body)
@@ -53,8 +52,17 @@ function addGathering(req, res) {
   .catch(error => console.log(error))
 }
 
+function deleteGathering(req, res) {
+  Group.findById(req.params.groupId)
+    .then(group => {
+      group.gatherings.remove({ _id: req.params.gathId })
+      group.save()
+    })
+    .catch(err => {console.log(err)})
+}
+
 function deleteGroup(){
-  console.log('linked')
+  console.log(req.params.id)
   // Group.findByIdAndDelete(req.params.id)
   // .then(group => res.json(group))
   // .catch(error => console.log(error))
@@ -66,5 +74,6 @@ export {
   show,
   join,
   addGathering,
-  deleteGroup
+  deleteGroup,
+  deleteGathering,
 }
