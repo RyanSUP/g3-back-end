@@ -12,6 +12,7 @@ router.use(decodeUserFromToken)
 router.post('/', checkAuth, groupsCtrl.create)
 router.post('/:id/profiles', checkAuth, groupsCtrl.join)
 router.post('/:id/gatherings', checkAuth, groupsCtrl.addGathering)
+router.put('/:groupId/gatherings/:gathId', checkAuth, groupsCtrl.updateGathering)
 router.delete('/:groupId/gatherings/:gathId', checkAuth, groupsCtrl.deleteGathering)
 
 export { router }
