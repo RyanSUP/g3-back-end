@@ -64,8 +64,19 @@ function deleteGathering(req, res) {
 }
 
 function deleteGroup(req, res){
+    // Get all profiles from this group
+  // For each profile, delete the group link
   Group.findByIdAndDelete(req.params.id)
-  .then(group => res.json(group))
+  .then(group => {
+    group.populate('profiles')
+    .then(populatedGroupObject => {
+      populatedGroupObject.profiles.forEach(profile => {
+        profile.groups.remove({ _id: req.params.id})
+        profile.save()
+      })
+      return res.json(group)
+    })
+  })
   .catch(error => console.log(error))
 }
 
