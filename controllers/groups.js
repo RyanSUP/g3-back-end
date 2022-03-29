@@ -61,11 +61,10 @@ function deleteGathering(req, res) {
     .catch(err => {console.log(err)})
 }
 
-function deleteGroup(){
-  console.log(req.params.id)
-  // Group.findByIdAndDelete(req.params.id)
-  // .then(group => res.json(group))
-  // .catch(error => console.log(error))
+function deleteGroup(req, res){
+  Group.findByIdAndDelete(req.params.id)
+  .then(group => res.json(group))
+  .catch(error => console.log(error))
 }
 
 export {
