@@ -1,5 +1,4 @@
 import { Group } from "../models/group.js";
-
 //we need to also set the manager of the group to the user who is logged in
 //then push the profile of the logged in user to the group
 //AND push the group into the profile of the logged in user
@@ -53,10 +52,13 @@ function addGathering(req, res) {
 }
 
 function deleteGathering(req, res) {
+  console.log(req.params)
   Group.findById(req.params.groupId)
     .then(group => {
-      group.gatherings.remove({ _id: req.params.gathId })
+      console.log(group)
+      group.gatherings.remove({ _id: req.params.gatheringId })
       group.save()
+      return res.json(group)
     })
     .catch(err => {console.log(err)})
 }
