@@ -4,6 +4,7 @@ import { Profile } from '../models/profile.js'
 function index(req, res) {
   Profile.find({})
   .populate('games')
+  .populate('groups')
   .then(profiles => res.json(profiles))
   .catch(err => {
     console.log(err)
@@ -14,6 +15,7 @@ function index(req, res) {
 function show(req, res) {
   Profile.findById(req.params.id)
   .populate('games')
+  .populate('groups')
   .then(profile => res.json(profile))
   .catch(err => {
     console.log(err)
