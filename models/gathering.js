@@ -6,6 +6,7 @@ const gatheringSchema = new Schema({
   name: {type: String},
   location: {type: String},
   date: {type: String}, 
+  host: {type: mongoose.Schema.Types.ObjectId, ref: "Profile"},
 }, {
   timestamps: true
 })

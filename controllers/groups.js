@@ -69,6 +69,17 @@ function deleteGroup(req, res){
   .catch(error => console.log(error))
 }
 
+function updateGathering(req, res) {
+  console.log(req.params.groupId)
+  console.log(req.params.gathId)
+  Group.findById(req.params.groupId)
+    .then(group => {
+        group.gatherings.replace({ _id: req.params.gathId }, { new: true })
+    })
+    .catch(err =>  console.log(err))
+}
+
+
 export {
   create,
   index,
@@ -77,4 +88,5 @@ export {
   addGathering,
   deleteGroup,
   deleteGathering,
+  updateGathering
 }
