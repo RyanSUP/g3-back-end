@@ -53,10 +53,13 @@ function addGathering(req, res) {
 }
 
 function deleteGathering(req, res) {
+  console.log(req.params)
   Group.findById(req.params.groupId)
     .then(group => {
-      group.gatherings.remove({ _id: req.params.gathId })
+      console.log(group)
+      group.gatherings.remove({ _id: req.params.gatheringId })
       group.save()
+      return res.json(group)
     })
     .catch(err => {console.log(err)})
 }
