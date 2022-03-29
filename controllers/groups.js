@@ -70,13 +70,22 @@ function deleteGroup(req, res){
 }
 
 function updateGathering(req, res) {
+  console.log(req.body)
   console.log(req.params.groupId)
   console.log(req.params.gathId)
   Group.findById(req.params.groupId)
-    .then(group => {
-        group.gatherings.replace({ _id: req.params.gathId }, { new: true })
-    })
-    .catch(err =>  console.log(err))
+  .then(group => {
+    const gathering = group.gatherings.find(gathering => gathering._id.equals(req.params.gathId))
+
+    gathering.name = req.body.name
+    gathering.location = req.body.location
+    gathering.date = req.body.date
+
+    group.save()
+
+    return res.json(group)
+  })
+  .catch(error => console.log(error))
 }
 
 
