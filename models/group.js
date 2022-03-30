@@ -12,7 +12,7 @@ const gatheringSchema = new Schema({
 
 const groupSchema = new Schema({
   name: {type: String},
-  image: {type: String},
+  image: {type: String, default:'https://i.imgur.com/AeL8PpK.png'},
   manager: {type: mongoose.Schema.Types.ObjectId, ref: "Profile"},
   gatherings: [gatheringSchema],
   profiles: [{ type: Schema.Types.ObjectId, ref: "Profile" }],
