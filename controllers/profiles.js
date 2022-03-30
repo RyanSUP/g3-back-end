@@ -53,12 +53,25 @@ function join(req, res) {
   .catch(error => console.log(error))
 }
 
+function jankyJoin(managerId, group) {
+  Profile.findById(managerId)
+  .then(profile => {
+    profile.groups.push(group)
+    profile.save()
+    .then(udpatedProfile => {
+      return udpatedProfile
+    })
+  })
+  .catch(error => console.log(error))
+}
+
 export { 
   index, 
   show,
   add,
   deleteGame as delete,
-  join
+  join,
+  jankyJoin,
 }
 
 
