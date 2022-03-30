@@ -52,7 +52,7 @@ function addGathering(req, res) {
   .then(group => {
     group.gatherings.push(req.body)
     group.save()
-    .then(udpatedGroup => res.json(udpatedGroup))
+    .then(udpatedGroup => res.json(req.body))
   })
   .catch(error => console.log(error))
 }
