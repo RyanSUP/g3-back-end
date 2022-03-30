@@ -97,6 +97,23 @@ function updateGathering(req, res) {
   .catch(error => console.log(error))
 }
 
+const updateGroup = (req, res) => {
+  Group.findById(req.params.groupId)
+  .populate('profiles')
+  .then(group => {
+    const profileToRemove = group.profiles.find(profile => profile._id.equals(req.params.profileId))
+    // Remove profile from group and group from profile 😵‍💫
+    group.profiles.remove({ _id: req.params.profileId})
+    profileToRemove.groups.remove({ _id: req.params.groupId})
+
+    profileToRemove.save()
+    group.save()
+
+    return res.json(group)
+  })
+  .catch(error => console.log(error))
+
+}
 
 export {
   create,
@@ -106,5 +123,6 @@ export {
   addGathering,
   deleteGroup,
   deleteGathering,
-  updateGathering
+  updateGathering,
+  updateGroup,
 }

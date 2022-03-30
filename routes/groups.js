@@ -13,6 +13,7 @@ router.post('/', checkAuth, groupsCtrl.create)
 router.post('/:id/profiles', checkAuth, groupsCtrl.join)
 router.post('/:id/gatherings', checkAuth, groupsCtrl.addGathering)
 router.put('/:groupId/gatherings/:gathId', checkAuth, groupsCtrl.updateGathering)
+router.put('/:groupId/profiles/:profileId', checkAuth, groupsCtrl.updateGroup)
 router.delete('/:groupId/:gatheringId', checkAuth, groupsCtrl.deleteGathering)
 
 export { router }
