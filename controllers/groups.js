@@ -11,7 +11,7 @@ function create(req, res) {
     group.profiles.push(req.user.profile)
     group.save()
     jankyJoin(req.body.manager, group)
-    .then(res => res.json(group))
+    return res.json(group)
   })
   .catch(err => res.json(err))
 }
