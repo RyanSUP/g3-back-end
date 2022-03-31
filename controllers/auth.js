@@ -1,6 +1,7 @@
 import { User } from '../models/user.js'
 import { Profile } from '../models/profile.js'
 import jwt from 'jsonwebtoken'
+import { getRandomOptions } from '../getRandomOptions.js'
 
 function signup(req, res) {
   Profile.findOne({ email: req.body.email })
@@ -10,7 +11,7 @@ function signup(req, res) {
     } else if (!process.env.SECRET){
       throw new Error('no SECRET in .env file')
     } else {
-      req.body.avatar = `https://ui-avatars.com/api/?background=random&rounded=true&name=${req.body.name}`
+      req.body.avatar = JSON.stringify(getRandomOptions())
       Profile.create(req.body)
       .then(newProfile => {
         req.body.profile = newProfile._id
