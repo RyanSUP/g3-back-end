@@ -18,6 +18,13 @@ const pruneGameObject =(gameObj) => (
     description_preview: gameObj.description_preview,
     image_url: gameObj.image_url,
     thumb_url: gameObj.image_url,
+    min_players: gameObj.min_players,
+    max_players: gameObj.max_players,
+    min_playtime: gameObj.min_playtime,
+    max_playtime: gameObj.max_playtime,
+    min_age: gameObj.min_age,
+    players: gameObj.players,
+    playtime: gameObj.playtime,
   }
 )
 
