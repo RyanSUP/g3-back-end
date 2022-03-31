@@ -5,6 +5,10 @@ function index(req, res) {
   Profile.find({})
     .populate('games')
     .populate('groups')
+    .populate({
+      path: 'groups',
+      populate: { path: 'profiles' }
+    })
     .then(profiles => res.json(profiles))
     .catch(err => {
       console.log(err)

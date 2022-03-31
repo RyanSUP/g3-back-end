@@ -18,6 +18,7 @@ function create(req, res) {
 
 function index(req, res) {
   Group.find({})
+  .populate('profiles')
   .then(groups => res.json(groups))
   .catch(err => {
     console.log(err)
