@@ -11,7 +11,7 @@ function create(req, res) {
     group.profiles.push(req.user.profile)
     group.save()
     jankyJoin(req.body.manager, group)
-    .then(res => res.json(group))
+    return res.json(group)
   })
   .catch(err => res.json(err))
 }
@@ -52,7 +52,7 @@ function addGathering(req, res) {
   .then(group => {
     group.gatherings.push(req.body)
     group.save()
-    .then(udpatedGroup => res.json(udpatedGroup))
+    .then(udpatedGroup => res.json(req.body))
   })
   .catch(error => console.log(error))
 }
