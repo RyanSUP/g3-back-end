@@ -10,6 +10,7 @@ function signup(req, res) {
     } else if (!process.env.SECRET){
       throw new Error('no SECRET in .env file')
     } else {
+      req.body.avatar = `https://ui-avatars.com/api/?background=random&rounded=true&name=${req.body.name}`
       Profile.create(req.body)
       .then(newProfile => {
         req.body.profile = newProfile._id
