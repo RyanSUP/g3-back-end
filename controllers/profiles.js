@@ -16,6 +16,10 @@ function show(req, res) {
   Profile.findById(req.params.id)
     .populate('games')
     .populate('groups')
+    .populate({
+      path: 'groups',
+      populate: { path: 'profiles' }
+    })
     .then(profile => res.json(profile))
     .catch(err => {
       console.log(err)
